@@ -1,0 +1,19 @@
+.include "unixspace.conf"
+
+all:
+	./mkdir_local $(DESTDIR) $(HTTPROOT);
+	cd SCREEN;      make -f Makefile.BSD
+	cd ned;         make -f Makefile.BSD
+	cd ss;          make -f Makefile.BSD
+
+clean:
+	cd SCREEN;      make -f Makefile.BSD clean
+	cd ned;         make -f Makefile.BSD clean
+	cd ss;          make -f Makefile.BSD clean
+
+install: all
+	cd SCREEN;      make -f Makefile.BSD install
+	cd ned;         make -f Makefile.BSD install
+	cd ss;          make -f Makefile.BSD install
+	cp http/*.jar   $(HTTPROOT)
+	cp http/*.html  $(HTTPROOT)

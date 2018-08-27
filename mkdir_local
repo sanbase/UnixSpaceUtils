@@ -1,0 +1,7 @@
+#!/bin/sh
+mkdir -p $1
+mkdir -p $1/bin
+mkdir -p $1/lib
+mkdir -p $2
+mkdir -p $2/Files
+mkdir -p $2/Images

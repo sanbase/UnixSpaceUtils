@@ -1,0 +1,44 @@
+FreeBSD or Linux
+
+The programs accessible both in the text mode (from console) and through a web-browser:
+ ss         - file manager Screen_Shell
+ ned        - text editor
+ edx        - binary editor
+
+The programs accessible only via web-browser:
+ Show_Image - viewer of the GIF and JPEG images
+ Window     - file viewer (http or regular) in the separate browser's window
+
+--------
+ssh.jar    - SSH java applet
+telnet.jar - Telnet java applet
+
+/usr/local/lib/.ss - common config file for Screen_Shell
+~/.ss              - user config file (not necessary)
+~/.sshprof         - user profile (not necessary)
+
+
+For installation:
+
+Make sure you have http deamon (apache). If not - install it.
+(http://www.apache.org)
+
+If your "DocumentRoot" directory is not "/var/www/html"
+change line #2 in the unixspace.conf:
+HTTPROOT = /var/www/htdocs
+
+Under 'root' account:
+
+1. run 'make'
+2. run 'make install'
+
+Now you are ready to log in your Linux box from web-browser of another PC.
+
+http://your.domain/telnet.http  for telnet connection
+http://your.domain/ssh.http     for SSH
+
+after login via applet, run /usr/local/bin/ss
+
+--------------------------
+Alexander Lashenko
+alexl@sanbasestudio.com
