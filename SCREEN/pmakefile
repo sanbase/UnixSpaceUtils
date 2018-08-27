@@ -1,0 +1,58 @@
+N      = screen
+LIBR   = .
+
+.include "../unixspace.conf"
+
+CC=cc -pthread -I. -I/usr/X11R6/include -DHELPDIR=\"$(DESTDIR)/lib/help\" -DHTTPDIR=\"$(HTTPROOT)\" \
+
+CFLAGS = -O2
+
+.if exists (/usr/X11R6)
+CC+=-DX11R6
+LIB=-L/usr/X11R6/lib -lX11
+.endif
+
+
+OBJ =  help.o dps.o dpi.o edit.o boxes.o area.o tty_name.o misc.o \
+       screen.o Tty.o tgoto.o termcap.o menu.o move.o Xmouse.o read.o
+
+####
+all:    $(LIBR)/lib$(N).a HELP Show_Image Window More tmp_read
+
+clean:
+	rm -f $(OBJ) $(LIBR)/lib$(N).a HELP Show_Image Window More tmp_read
+
+install: all
+	cp $(LIBR)/lib$(N).a $(DESTDIR)/lib
+	cp Show_Image   $(DESTDIR)/bin
+	cp More         $(DESTDIR)/bin
+	cp Window       $(DESTDIR)/bin
+	cp HELP         $(DESTDIR)/lib/help/
+	cp termcap      $(DESTDIR)/lib
+	cp tmp_read     $(HTTPROOT)/../cgi-bin
+
+
+$(LIBR)/lib$(N).a:  $(OBJ)
+	ar crv $(LIBR)/lib$(N).a $(OBJ)
+	ranlib $(LIBR)/lib$(N).a
+
+$(OBJ): tty_codes.h
+
+HELP: HELP.c $(LIBR)/lib$(N).a $(DESTDIR)/lib/help
+	$(CC) -O HELP.c $(LIBR)/lib$(N).a $(LIB) -o HELP
+
+$(DESTDIR)/lib/help:
+	mkdir $(DESTDIR)/lib/help
+
+Show_Image:     Show_Image.c $(LIBR)/lib$(N).a
+	$(CC) Show_Image.c $(LIBR)/lib$(N).a $(LIB) -o Show_Image
+
+Window:     Window.c $(LIBR)/lib$(N).a
+	$(CC) Window.c $(LIBR)/lib$(N).a -o Window
+
+More:     More.c $(LIBR)/lib$(N).a
+	$(CC) More.c $(LIBR)/lib$(N).a $(LIB) -o More
+
+tmp_read:       tmp_read.c
+	$(CC) -O2 tmp_read.c -o tmp_read;
+	strip tmp_read

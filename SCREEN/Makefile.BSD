@@ -1,0 +1,9 @@
+####
+all:
+	make -f pmakefile
+
+clean:
+	make -f pmakefile clean
+
+install: all
+	make -f pmakefile install
