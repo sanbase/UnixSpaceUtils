@@ -2,26 +2,31 @@
 <HEAD>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
 <TITLE>
-Java SSH Applet
+Java Telnet Applet
 </TITLE>
 </HEAD>
 <BODY BGCOLOR="#105040">
 
-<applet
-	archive="ssh.jar"
-	code=Ssh.class
-	width=300
-	height=100
+<script language=JavaScript>
+<!--
+self.moveTo(0,0);
+self.resizeTo(screen.availWidth,screen.availHeight);
+self.focus();
+//-->
+</script>
+
+<APPLET
+	ARCHIVE  = "telnet.jar"
+	CODE     = "telnet.class"
+	NAME     = "telnet"
+	WIDTH    = "100%"
+	HEIGHT   = "100%"
 >
-<param name=hashHostKey value="">
-<param name=port value="22">
+<param name=port value="23">
 <PARAM NAME=VTcolumns VALUE="96">
 <PARAM NAME=VTrows VALUE="36">
 <PARAM NAME=VTid VALUE="applet">
 <param name=scrollbar value="East">
-<param name=scrollingBufferSize value="0">
-<param name=numberOfCharsDisplayBeforeScreenUpdate value="0">
-<param name=ScreenUpdateForEachPacket value="false">
 
 </APPLET>
 </BODY>
