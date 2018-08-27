@@ -1,0 +1,83 @@
+        F1  - Help 
+        F3  - Find Next 
+        F4  - Go To First Page 
+        F5  - Open Next File 
+        F6  - Insert ASCII Symbol 
+        F7  - Switch Windows 
+        F10 - Cancel Command / Save & Exit 
+        F11 - Back Tab 
+ 
+F2 - Extended Hot Key Bar 
+ 
+        F2F1    - File Save 
+        F2F2    - Pop Menu 
+	F2F3    - Find Previous
+        F2F4    - Maximize Active Window 
+	F2F7    - Replace
+        F2F11   - Run Filtr ( Current File as input to 
+                  Filtr and back to the screen as output result ) 
+        F2F12   - Exit 
+              Current Line is: 
+        F2 Up   - Last In Window 
+        F2 Down - First In Window 
+	CtrlD   - Next Word in Line
+	CtrlW   - Previous Word in Line
+ 
+F12 - Command prompt: 
+ 
+	F12 <  word  > F1    - run   man for <  word  >
+        F12 <  word  > F3    - Find Forward 
+        F12 <  word  > F2F3  - Find Backward 
+        F12 < number > F4    - Go To Line  < number > 
+        F12 <filename> F7    - Creat New File  <filename> 
+        F12 <filename> F5    - Open File <filename> 
+        F12 < symbol > F11   - Mark Current Line as  < symbol > 
+        F12 < symbol > Enter - Go To the Line Marked < symbol > 
+	F12 Space            - Get a Current Word as an Argument
+        F12F7   - Window Menu 
+        F12F4   - Go To Last Page 
+        F12F5   - Move / Resize Active Window 
+        F12F2F4 - Close Active Window 
+	F12F2F8 - Delete Lines
+        F12F9   - Cascade Windows 
+        F12F6   - Tile Windows 
+        F12Del  - Delete Rest of Line 
+
+
+Block Operations 
+ 
+        F12 < Cursor to End of Block > F9   - Select Block 
+        F12 < Cursor to End of Block > F2F8 - Delete Block 
+	F12 < Cursor to End of Block > F8   - Insert Empty Block
+	F12 < Cursor to End of Block > F7   - Format Block
+        F12 < number > F9   - Select < number > of Lines 
+        F12 < number > F2F8 - Delete < number > of Lines 
+        F12 < number > F8   - Insert < number > of Lines 
+        F2F8     - Delete Line 
+        F2F9     - Copy Selected Block 
+        F12F2F9  - Insert/Recover Deleted Block 
+        F12F2F11 - View Selected Block 
+        F12F2F12 - View Deleted Block 
+        F8  - Insert Line 
+        F9  - Select Line 
+ 
+Macro Commands:
+ 
+        F2F5    - Start to Enter Macrocommand 
+        EscEsc  - Finish Etering 
+        F2F6    - Run Macrocommand 
+ 
+AutoFormat:
+ 
+	F12F2F3  - Set   Begin of Line
+	F12F2F2  - Close End of Line
+	F12F2F5  - Mode 1: No Align, only Break
+	F12F2F6  - Mode 2: Align and Break
+	F12F2F7  - Mode 3: Align, Break and Hyphen
+	F12F2F1  - Close AutoFormat
+
+Drawing :
+
+	Ctrl/B         - Drawing Mode
+	Right,Left,
+	Up, Down       - Draw Lines

@@ -1,0 +1,92 @@
+#
+#                      Текстовый редактор NED.
+#                          Олег Смоляр
+#                          Киев - 1995
+#
+#      30.07.1995 Версия 1.0
+#      08.12.1995 Версия 1.1
+#      02.01.1996 Версия 2.0  исключена загрузка всего файла в память
+#      02.05.1997 Версия 2.2  введен режим восстановления (undo).
+
+.include "../unixspace.conf"
+CC=cc -O2
+LIB=../SCREEN/libscreen.a -L/usr/X11R6/lib -pthread
+
+.if exists (/usr/X11R6)
+LIB+=-lX11
+.endif
+
+NED=ned
+
+N=$(DESTDIR)/bin/n
+
+HELP=$(DESTDIR)/lib/ned.help
+
+CFLAGS= -I../SCREEN -DX11 -D_MALLOC_INTERNAL -DNO_RBLOCK -DNO_STRMODE -DENGLDIAG -DHELPNAME=\"$(HELP)\" -DNO_SHELL
+
+SRCHELP=ned.help
+
+OBJ = ned.o edit.o box.o init.o low.o editstr.o write.o cmd.o block.o \
+      getdir.o hlam.o filtr.o operation.o steck.o signal.o mess.o \
+      rwconf.o find.o malloc.o menu.o ccompat.o
+
+####
+all:  $(NED) $(HELP)
+
+clean:
+	rm -f $(OBJ) $(NED)
+
+$(NED):    $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ)  $(LIB) -o $(NED)
+	strip $@
+
+install: all
+	cp $(NED) $(DESTDIR)/bin
+	-ln -s $(DESTDIR)/bin/$(NED) $(N)
+
+$(HELP): $(SRCHELP)
+	cp $(SRCHELP) $(HELP)
+	chmod 444 $(HELP)
+
+edit.o: edit.c ned.h
+	$(CC) $(CFLAGS) -c edit.c
+box.o: box.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c box.c
+ned.o: ned.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c ned.c
+init.o: init.c ned.h
+	$(CC) $(CFLAGS) -c init.c
+rwconf.o: rwconf.c ned.h
+	$(CC) $(CFLAGS) -c rwconf.c
+low.o:  low.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c low.c
+editstr.o: editstr.c ned.h
+	$(CC) $(CFLAGS) -c editstr.c
+write.o: write.c ned.h
+	$(CC) $(CFLAGS) -c write.c
+cmd.o: cmd.c ned.h
+	$(CC) $(CFLAGS) -c cmd.c
+block.o: block.c ned.h
+	$(CC) $(CFLAGS) -c block.c
+getdir.o: getdir.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c getdir.c
+hlam.o: hlam.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c hlam.c
+mess.o: mess.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c mess.c
+malloc.o: malloc.c ned.h
+	$(CC) $(CFLAGS) -c malloc.c
+filtr.o: filtr.c ned.h
+	$(CC) $(CFLAGS) -c filtr.c
+operation.o: operation.c ned.h
+	$(CC) $(CFLAGS) -c operation.c
+find.o: find.c ned.h
+	$(CC) $(CFLAGS) -c find.c
+steck.o:steck.c ned.h
+	$(CC) $(CFLAGS) -c steck.c
+signal.o:signal.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c signal.c
+ccompat.o:ccompat.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c ccompat.c
+menu.o  :menu.c ned.h $(MAKEFILE)
+	$(CC) $(CFLAGS) -c menu.c
