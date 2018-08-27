@@ -1,0 +1,58 @@
+#
+#             File manager  ScreenSHell (прототип - comint М.Флерова.)
+#               A.Lashenko "UNITEX+, ltd"  Kiev  1990-1993
+#                          "SOFTEX+, inc"  Toronto 1996  mailto: lashenko@unixspace.com
+#
+
+.include "../unixspace.conf"
+
+CC=cc -O2 -I../SCREEN
+LIB=../SCREEN/libscreen.a
+L       =  ../SCREEN/libscreen.a  -pthread
+N       =  ss
+
+.if exists (/usr/X11R6)
+L+=-L/usr/X11R6/lib -lX11
+.endif
+
+
+obj   = main.o     ind_err.o  getcat.o   indcat.o   shbuf.o   ind_date.o  \
+	getsuit.o  search.o   depend.o   savmark.o  start.o   protname.o  \
+	indrun.o   waitpid.o  tokill.o   inp_name.o shell.o   strt.o      \
+	rm.o       rename.o   copy.o     execvp.o    menu.o \
+	mkdir.o    file_cat.o cm_line.o  gettune.o \
+	whoami.o   messages.o index.o    getname.o   conv.o
+
+
+###
+all:    $N edx dpexe
+
+clean:
+	rm -f $(obj) $N edx dpexe
+
+install: all
+	cp ss.conf $(DESTDIR)/lib/.ss
+	cp ssh.help $(DESTDIR)/lib/help/ss
+	cp $N edx dpexe  $(DESTDIR)/bin
+	./cp_prof
+
+$N:     $(obj)
+	$(CC)  $(obj) $L -o $@
+	strip $@
+
+
+
+gettune.o      ind_err.o      cm_line.o      cat.o          indcat.o      \
+shell.o        start.o        rename.o       mkdir.o        copy.o        \
+rm.o           getcat.o       search.o       getsuit.o      depend.o      \
+ls.o           strt.o         savmark.o      file_cat.o     shbuf.o       \
+main.o         indrun.o       inp_name.o    : ssh.h
+
+main.o         indrun.o       tokill.o       waitpid.o    : run.h
+
+edx:    edx.c
+	$(CC) -I../SCREEN  edx.c $L -o edx
+	strip edx
+
+dpexe:  dpexe.c
+	$(CC)  dpexe.c -o dpexe

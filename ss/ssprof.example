@@ -1,0 +1,6 @@
+PATH=:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin
+EDITOR=/usr/local/bin/ned
+#PAGER=/usr/local/bin/more
+BLOCKSIZE=1024
+TZ=Canada/Eastern
+#DESTDIR=/usr/local

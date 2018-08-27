@@ -1,0 +1,122 @@
+* general description
+_====== ^S creen^SH ell _== THE BASIC CONTROL SYMBOLS == ^S creen^SH ell _=======
+`------------ VIEW of FILES-----------  ------- VIEW of DIRECTORY --------
+ ^13   text editor                   ^15      sorting of files
+ ^14      hex editor                   ^letter    pattern filter
+ ^4      view of file/directory       ^^        arbitrary letter in filter
+ ^?        information on file        ^17+letter  suffix filter
+				      ^16  regimes of directory viewer
+`---------- TRANSFERENCE -------------  ---------- MISCELLANEA -----------
+ ^13   go in the directory         ^30      exit ssh
+ ^10   going out of the directory ^11    help
+ ^/     go to root directory         ^1    redraw screen
+ ^.     go to the home directory     ^* ^> ^<  mark the file
+ ^12    mark current directory        ^3      run shell
+ ^[1][2]  go to the marked directory  ^25     remove marks and filters
+`--------- DELETE/COPY FILES --------- ---------- START PROGRAMMS -------
+ ^-     mark the file for deletion      ^9    synchronous start
+ ^29   mark .b, .o, and core files  ^&      asynchronous start
+ ^28   delete the marked files     ^(  + ^28      kill the process
+ ^SPACE   erase the mark              ^(  + ^?  list of processes
+ ^=     rename the file              ^#  total list of processes
+ ^26   create new/copy marked file(s)^%  compress/decompress the file
+ ^27   create directory/move marked file
+    ^*      _general description    ^c  _creation and copying of files
+    ^!   _execution of shell's command  ^=  _renaming of files
+! execute shell's command
+======= ^S creen^SH ell _=== CONTROL SYMBOLS for SHELL === ^S creen^SH ell _=========
+`--------------------------------------------------------------------------
+ To execute the shell's command mark the necessary files with the symbols
+ ~'*','>', or '<' `, then press ^11 and put down the command.
+
+	   When printing command the following symbols are actual:
+ ^23 ^22  motion in string    ^24 ^25  insert/delete symbol
+ ^10  go to begin               ^29 ^10  go to end
+ `         The command may be folowed with the symbols:
+ ^13      start command and wait for the result
+ ^29&     background running of the programm
+ ^Delete       cancel the command
+
+ `The names of marked files will be substituted in command. Whis this the
+ names marked with ~'*' or '<' `will be substituted before the first symbol ~'|'`,
+ and the names marked with ~'>' ` will be added to the end of command.
+
+	 ScreenSHell remembers the previous commands.
+	 You can call they using
+ ^21   recall the previous command
+ ^20   recall the next     command
+
+    ^*      _general description    ^c  _creation and copying of files
+    ^!, ^&   _execution of shell's command  ^=  _renaming of files
+c creation and copying of files
+====== ^S creen^SH ell _======== CREATE / COPY FILES ======= ^S creen^SH ell _=======
+`--------------------------------------------------------------------------
+
+` Creation of files and directories:
+ ^26  put down the name of new file
+ ^27  put down the name of new directory
+
+` To copy/move file(s) mark it(they) with ^'*', transfer (if necessary)
+` to the destined directory and press
+ ^26  to copy the files
+ ^27  to move the files
+
+` If the file you create/copy alredy ¥xists in the current directory
+   ScreenSHell will propose to rename it. It is also possible
+ ^28    overwrite the file
+ ^Delete    cancel
+
+` If the name of the file to be created is ended with the symbol ^28
+` the old file with the same name will be deleted by default.
+
+` You can copy both the files and the library modules!
+
+    ^*      _general description    ^c  _creation and copying of files
+    ^!   _execution of shell's command  ^=  _renaming of files
+= renaming of files
+======== ^S creen^SH ell _====== RENAMING OF FILES ==== ^S creen^SH ell _=========
+`------------------------------------------------------------------------
+
+` To rename the file or directory press symbol ^'=' and write new name.
+` When writing the following symbols are actual:
+
+ ^23 ^22  motion in string    ^24 ^25  insert/delete symbol
+ ^10  go to begin               ^29 ^10  go to end
+
+
+` Whis this the file name may be followed with:
+
+ ^13  to rename the file
+ ^28  before renaming delete the file with the same name
+ ^Delete   cancel
+
+
+
+
+
+    ^*      _general description    ^c  _creation and copying of files
+    ^!   _execution of shell's command  ^=  _renaming of files
+& execution of processes
+============ ^S creen^SH ell _=EXECUTION of PROCESSES= ^S creen^SH ell _============
+`--------------------------------------------------------------------------
+`-Before starting executive file you may mark the input and the output
+files with the symbols ~'<' and '>'` respectively, and the files-arguments with ~'*'`.
+Then bring cursor to the name of the file to be executed and press:
+    ^9   to start the process
+    ^&       background running       ^@  debugging
+`- As for the ~text file` execution means translation of the file, for the ~Makefile`
+it means ~make`. If the process ~'name'` was started as background one, his output
+is addressed into the file ~'name.O'`, and the ~'¨¬ï'` is shown in the list of the
+executing processes at the top of screen.
+When the process is finished ~ScreenSHell` shows its return code:
+    ^+        succesfull
+    ^number = return code
+    ^number?  abnormal closing on sygnal 'number'
+In order to 'kill' the background processes press '(' and mark this
+processes with symbol ^'-', then press ^13 or ^28.
+` This regime allows also
+    ^'?'      ScreenSHell will show state of the running processes
+    ^Delete   transferance to the standard regime
+
+    ^*      _general description    ^c  _creation and copying of files
+    ^!   _execution of shell's command  ^=  _renaming of files

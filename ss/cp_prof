@@ -1,0 +1,2 @@
+#-bash
+cp ssprof.example ~/.sshprof
